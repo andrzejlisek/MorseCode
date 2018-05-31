@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SpectrumSettings</class>
+ <widget class="QDialog" name="SpectrumSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>479</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Spectrogram settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0">
+    <widget class="QLabel" name="SpecFullPaletteL">
+     <property name="text">
+      <string>Display palette</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="SpecFullLayoutL">
+     <property name="text">
+      <string>Spectrogram toolbar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QLabel" name="SpecOverThrL">
+     <property name="text">
+      <string>Overdrive threshold</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="2">
+    <widget class="QPushButton" name="SpecFullHalfColor">
+     <property name="text">
+      <string>Color</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="SpecMouseL">
+     <property name="text">
+      <string>Hide mouse cursor</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="SpecFullLayoutT"/>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="SpecDispBL">
+     <property name="text">
+      <string>Display Blue</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="SpecDispRL">
+     <property name="text">
+      <string>Display Red</string>
+     </property>
+    </widget>
+   </item>
+   <item row="20" column="1" colspan="2">
+    <widget class="QPlainTextEdit" name="SpecFullMarkersText"/>
+   </item>
+   <item row="19" column="1" colspan="2">
+    <widget class="QLabel" name="SpecFullMarkersH">
+     <property name="text">
+      <string>Frequency|Size|Red|Green|Blue</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="2">
+    <widget class="QPushButton" name="SpecFullStripColor">
+     <property name="text">
+      <string>Color</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="1" colspan="2">
+    <widget class="QLineEdit" name="SpecFullScrollT"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="SpecMouseButtons">
+     <property name="text">
+      <string>Buttons</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QLabel" name="SpecFullStripL">
+     <property name="text">
+      <string>Spectrogram strip</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="0">
+    <widget class="QCheckBox" name="SpecFullMarkersC">
+     <property name="text">
+      <string>Draw markers</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="1">
+    <widget class="QLineEdit" name="SpecFullHalfT"/>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="SpecDispGL">
+     <property name="text">
+      <string>Display Green</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0">
+    <widget class="QLabel" name="SpecFullScrollL">
+     <property name="text">
+      <string>Spectrogram scroll cycle</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1">
+    <widget class="QLineEdit" name="SpecOverThrT"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="SpecDecimationL">
+     <property name="text">
+      <string>Compute decimation</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <widget class="QLabel" name="SpecFullHalfL">
+     <property name="text">
+      <string>Spectrogram half marker</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2">
+    <widget class="QPushButton" name="SpecOverThrColor">
+     <property name="text">
+      <string>Color</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="1">
+    <widget class="QLineEdit" name="SpecFullStripT"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QCheckBox" name="SpecDecimationC">
+     <property name="text">
+      <string>Constant</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="SpecDecimationT"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QCheckBox" name="SpecMouseGraph">
+     <property name="text">
+      <string>Graph</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QComboBox" name="SpecWindowS">
+     <item>
+      <property name="text">
+       <string>Rectangle</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Triangle</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Hanning</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Blackman</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Hamming</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="SpecFullLayoutS">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Top</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bottom</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Right</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Left</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="SpecWindowL">
+     <property name="text">
+      <string>Window type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="SpecFullGammaL">
+     <property name="text">
+      <string>Display gamma x1000</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QCheckBox" name="SpecNegativeW">
+     <property name="text">
+      <string>Negative</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="SpecNegativeL">
+     <property name="text">
+      <string>Display negative</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" colspan="2">
+    <widget class="QComboBox" name="SpecFullPaletteCW"/>
+   </item>
+   <item row="6" column="1" colspan="2">
+    <widget class="QLineEdit" name="SpecFullGammaTW"/>
+   </item>
+   <item row="7" column="1" colspan="2">
+    <widget class="QComboBox" name="SpecDispRW">
+     <item>
+      <property name="text">
+       <string>Raw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Filtered</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Reference</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="8" column="1" colspan="2">
+    <widget class="QComboBox" name="SpecDispGW">
+     <item>
+      <property name="text">
+       <string>Raw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Filtered</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Reference</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="9" column="1" colspan="2">
+    <widget class="QComboBox" name="SpecDispBW">
+     <item>
+      <property name="text">
+       <string>Raw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Filtered</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Reference</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>SpecMouseGraph</tabstop>
+  <tabstop>SpecMouseButtons</tabstop>
+  <tabstop>SpecFullLayoutS</tabstop>
+  <tabstop>SpecFullLayoutT</tabstop>
+  <tabstop>SpecDecimationT</tabstop>
+  <tabstop>SpecDecimationC</tabstop>
+  <tabstop>SpecWindowS</tabstop>
+  <tabstop>SpecFullPaletteCW</tabstop>
+  <tabstop>SpecFullGammaTW</tabstop>
+  <tabstop>SpecDispRW</tabstop>
+  <tabstop>SpecDispGW</tabstop>
+  <tabstop>SpecDispBW</tabstop>
+  <tabstop>SpecNegativeW</tabstop>
+  <tabstop>SpecOverThrT</tabstop>
+  <tabstop>SpecOverThrColor</tabstop>
+  <tabstop>SpecFullStripT</tabstop>
+  <tabstop>SpecFullStripColor</tabstop>
+  <tabstop>SpecFullHalfT</tabstop>
+  <tabstop>SpecFullHalfColor</tabstop>
+  <tabstop>SpecFullScrollT</tabstop>
+  <tabstop>SpecFullMarkersC</tabstop>
+  <tabstop>SpecFullMarkersText</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SoundSettings</class>
+ <widget class="QDialog" name="SoundSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>590</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sound settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="15" column="2">
+    <widget class="QLineEdit" name="PlaybackCompensation"/>
+   </item>
+   <item row="22" column="0" colspan="3">
+    <widget class="QCheckBox" name="VisibleBufSpeedC">
+     <property name="text">
+      <string>Show buffer speed slider</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="SoundBufferRL">
+     <property name="text">
+      <string>Record buffer size (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="21" column="0" colspan="3">
+    <widget class="QCheckBox" name="VisibleBufC">
+     <property name="text">
+      <string>Show buffer controllers</string>
+     </property>
+    </widget>
+   </item>
+   <item row="20" column="0" colspan="3">
+    <widget class="QCheckBox" name="VisibleProcC">
+     <property name="text">
+      <string>Show audio processing parameters</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="1">
+    <widget class="QLineEdit" name="PlaybackBufferMinT"/>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QComboBox" name="DeviceIS"/>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="PlaybackBufferL">
+     <property name="text">
+      <string>Playback buffer size (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="2">
+    <widget class="QPushButton" name="ToFileB">
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QComboBox" name="DeviceOS"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="RefreshL">
+     <property name="text">
+      <string>Refresh period (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QLineEdit" name="RefreshT">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1" colspan="2">
+    <widget class="QLineEdit" name="SoundChunkT">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="SoundBufferPL">
+     <property name="text">
+      <string>Player buffer size (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="2">
+    <widget class="QPushButton" name="FromFileB">
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1" colspan="2">
+    <widget class="QLineEdit" name="SoundBufferRT">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1" colspan="2">
+    <widget class="QLineEdit" name="RepaintTimeoutT"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="RepaintBufferSizeL">
+     <property name="text">
+      <string>Repaint buffer size (s)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1" colspan="2">
+    <widget class="QLineEdit" name="RepaintBufferSizeT"/>
+   </item>
+   <item row="15" column="1">
+    <widget class="QComboBox" name="PlayerEnabledS">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Raw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Filtered</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Reference</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="RepaintTimeoutL">
+     <property name="text">
+      <string>Repaint timeout (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="SoundStereoModeL">
+     <property name="text">
+      <string>Stereo record</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0">
+    <widget class="QCheckBox" name="PlayerEnabledC">
+     <property name="text">
+      <string>Player enabled</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="1">
+    <widget class="QLineEdit" name="ToFileT">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QCheckBox" name="FiltersEnabledC">
+     <property name="text">
+      <string>Filters enabled</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QComboBox" name="SampleRateS"/>
+   </item>
+   <item row="16" column="2">
+    <widget class="QLineEdit" name="PlaybackBufferMaxT"/>
+   </item>
+   <item row="9" column="1" colspan="2">
+    <widget class="QComboBox" name="SoundStereoModeS">
+     <item>
+      <property name="text">
+       <string>Mix</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Left</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Right</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Difference</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="17" column="0">
+    <widget class="QCheckBox" name="AudioFromFileC">
+     <property name="text">
+      <string>Simulate record from file</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="SampleRateL">
+     <property name="text">
+      <string>Sample rate</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="DeviceOL">
+     <property name="text">
+      <string>Output device</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="DeviceIL">
+     <property name="text">
+      <string>Input device</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="SoundChunkL">
+     <property name="text">
+      <string>Player chunk size (ms)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="0">
+    <widget class="QCheckBox" name="ToFileC">
+     <property name="text">
+      <string>Record audio to file</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="2">
+    <widget class="QCheckBox" name="FiltersDrawRefC">
+     <property name="text">
+      <string>Draw reference</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1" colspan="2">
+    <widget class="QLineEdit" name="SoundBufferPT">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="23" column="0" colspan="3">
+    <widget class="QCheckBox" name="VisibleMorseC">
+     <property name="text">
+      <string>Show Morse code controllers</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="1">
+    <widget class="QCheckBox" name="FiltersDrawFilC">
+     <property name="text">
+      <string>Draw filtered</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="1">
+    <widget class="QLineEdit" name="FromFileT">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="1" colspan="2">
+    <widget class="QLineEdit" name="FilterSizeT"/>
+   </item>
+   <item row="19" column="0" colspan="3">
+    <widget class="QCheckBox" name="VisibleSpectrogramC">
+     <property name="text">
+      <string>Show spectrogram parameters</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <widget class="QLabel" name="FilterSizeL">
+     <property name="text">
+      <string>Filter size</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QLabel" name="ReplayBufferSizeL">
+     <property name="text">
+      <string>Rerecord buffer size (s)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1" colspan="2">
+    <widget class="QLineEdit" name="ReplayBufferSizeT"/>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>DeviceIS</tabstop>
+  <tabstop>DeviceOS</tabstop>
+  <tabstop>SampleRateS</tabstop>
+  <tabstop>RefreshT</tabstop>
+  <tabstop>SoundBufferRT</tabstop>
+  <tabstop>SoundBufferPT</tabstop>
+  <tabstop>SoundChunkT</tabstop>
+  <tabstop>SoundStereoModeS</tabstop>
+  <tabstop>RepaintTimeoutT</tabstop>
+  <tabstop>RepaintBufferSizeT</tabstop>
+  <tabstop>ReplayBufferSizeT</tabstop>
+  <tabstop>FiltersEnabledC</tabstop>
+  <tabstop>FiltersDrawFilC</tabstop>
+  <tabstop>FiltersDrawRefC</tabstop>
+  <tabstop>FilterSizeT</tabstop>
+  <tabstop>PlayerEnabledC</tabstop>
+  <tabstop>PlayerEnabledS</tabstop>
+  <tabstop>PlaybackCompensation</tabstop>
+  <tabstop>PlaybackBufferMinT</tabstop>
+  <tabstop>PlaybackBufferMaxT</tabstop>
+  <tabstop>AudioFromFileC</tabstop>
+  <tabstop>FromFileT</tabstop>
+  <tabstop>FromFileB</tabstop>
+  <tabstop>ToFileC</tabstop>
+  <tabstop>ToFileT</tabstop>
+  <tabstop>ToFileB</tabstop>
+  <tabstop>VisibleSpectrogramC</tabstop>
+  <tabstop>VisibleProcC</tabstop>
+  <tabstop>VisibleBufC</tabstop>
+  <tabstop>VisibleBufSpeedC</tabstop>
+  <tabstop>VisibleMorseC</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
