@@ -1,0 +1,8 @@
+FLIR.bmp|8|433|1|FLIR: Greyscale
+FLIR.bmp|26|433|1|FLIR: Iron
+FLIR.bmp|44|433|1|FLIR: Rain
+FLIR.bmp|62|433|1|FLIR: Glowbow
+FLIR.bmp|80|433|1|FLIR: Yellow
+RGB.bmp|1|765|0|Colors: Red
+RGB.bmp|7|765|0|Colors: Green
+RGB.bmp|16|765|0|Colors: Blue

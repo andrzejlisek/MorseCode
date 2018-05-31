@@ -1,0 +1,193 @@
+<h1>MorseCode 1.0</h1>
+
+<h3>General purpose</h3>
+<p>The general purpose of MorseCode is automatic decoding CW signals, sending CW signal using Morse code and visualizing any sound to manually decoding based on spectrogram. The other puspose is displaying spectrogram of any recorded sound.</p>
+
+<h3>Control sections in main interface</h3>
+<p>The main interface has following control sections:</p>
+<ul>
+ <li><b>Control</b> - Contains controls to start and stop working, open general settings and display visualization in separate window. This is only section, which cannot be hidden.</li>
+ <li><b>Rerecord control</b> - Allows to rewind and re-record previous sound using audio buffer.  Works only, if record audio to file is enabled, buffer size is not limited.</li>
+ <li><b>Rerecord speed</b> - Contains slider control to change radio of visualizations speed to real time, works only, if record audio to file is enabled, buffer size is not limited.</li>
+ <li><b>Morse code</b> - Provides encoding and decoding CW signal using Morse code.</li>
+ <li><b>Spectrogram display</b> - Contains parameters of spectrogram display, this parameters not affects in CW decoding.</li>
+ <li><b>Audio processing</b> - Contains parameters of audio, which are used in CW decoding.</li>
+</ul>
+
+<h3>Basic control and displaying spectrogram</h3>
+<p>To display spectrogram, click the Start button in Control section. Spectrogram will be displayed continuously. You can change following parameters in Spectrogram display section:</p>
+<ul>
+ <li><b>Gain</b> - Gain/amplify/brightness of signal, it should be adjusted to signal strength and signal parts to be shown. Overflown signal are not shown.</li>
+ <li><b>Resolution</b> - Number of Fourier transformation points. The lower values will show signal sharper in time, but smoother in frequency, the higher values will show signal sharper in frequency, but smoother in time.</li>
+ <li><b>Window</b> - Fraction of transform window to be calculated. Value changing affects similarly to Resolution value.</li>
+ <li><b>Zoom</b> - Whole spectrogram height in pixels.</li>
+ <li><b>Offset</b> - Adjust spectrogram position vertically.</li>
+ <li><b>Step</b> - Number of audio samples per one pixel of spectrogram.</li>
+ <li><b>Base</b> - Offset of signal value drawn in spectrogram, can reduce displaying background noise and highlight weak signals.</li>
+ <li><b>Min/Max</b> - Number of adjacent current spectrum values to get minimum (negative value) or maximum (positive value). This setting may highlight or hide weak signals.</li>
+ <li><b>Lines</b> - Number of spectrogram lines to display longer signal history.</li>
+</ul>
+<p>Below mentioned parameters, you can change display modes:</p>
+<ul>
+ <li><b>Normal</b> - Spectrogram is drawing from left to right in screen in one line.</li>
+ <li><b>Half offset</b> - Spectrogram is drawing parallel in two lines, which one of this is offset half-length of line. This second line makes easier to watch signals, which are broken on first line ends.</li>
+ <li><b>Scrolling</b> - Whole spectrogram moves horizontally, automated decoding does not work in this mode.</li>
+</ul>
+<p>You can display signal volume instead of spectrogram using this field. You can also change displaying volume unit below spectrogram in one of following modes:</p>
+<ul>
+ <li><b>None</b> - Displays spectrogram only.</li>
+ <li><b>VU only</b> - Displays spectrogram with volume unit of filtered and reference signal.</li>
+ <li><b>Signal only</b> - Displays spectrogram with calculated and manually corrected discrete signal which is used to decode CW.</li>
+ <li><b>VU and signal</b> - Displays both VU and discrete signal.</li>
+</ul>
+<p>If you want to automatically decode CW, you have to use &quot;Signal&quot; only or &quot;VU and signal&quot; setting. During changing spectrogram display parameters, discrete signal will not be repainted, because this signal is generated sequentially and may be adjusted by user before processing.</p>
+
+<h3>Filtered and reference signal</h3>
+<p>During displaying spectrogram, you can set frequency bounds to make band pass filter to create filtered signal (main signal used to create discrete signal) and referenced signal (used only in reference mode). The filtered signal should be contain only signal which you wish to decode, but reference signal should be contain only background noise signal near filtered signal.</p>
+<p>Filtered signal bounds can be adjusted by clicking and dragging on spectrogram using left mouse button. To cancel filtering, you can click above spectrogram in spectrogram screen (in this case, spectrogram zoom value must be smaller than spectrogram line size). Analogically, you can set reference signal bound using right mouse button.</p>
+
+<h3>Audio processing</h3>
+<p>Before CW decoding, program must generate discrete signal from filtered signal, eventually using reference signal.</p>
+<p>There is two ideas, both are based on attack and release signal volume. The volume above attack is interpreted to change discrete signal to up, and volume below release is interpreted to change signal to down. Volume between attack and release does not change discrete signal state, so if attack volume is greater than release volume, discrete signal generator works similar to Schmidt flip-flop. Attack volume cannot be smaller than release volume. If you not use reference signal, volume is the absolute signal strength. If you use reference signal, volume is the filtered to reference signal strength radio, so it is not susceptible for signal with unstable volume, where both filtered signal and reference signal volumes changes proportionally.</p>
+<p>You can set processing parameters in <b>Audio processing</b> section.</p>
+<p>The <b>Reference</b> check box determines, if reference signal is used, VU of signal window can be calculated in one of three method selectable in drop-down list. For all methods, the filtered signal sample values are squared.</p>
+<p>To generate most clearly discrete signal you can adjust following parameters:</p>
+<ul>
+ <li><b>VU gain</b> - gain of VU value</li>
+ <li><b>VU size</b> - size of VU calculating window</li>
+ <li><b>Attack thr</b> and <b>Release thr</b> - Thresholds to get attack (change signal to up) and release threshold (change signal to down). In no-reference mode, value 1000 means full visible VU value, where VU signal display is the whitest (this can be adjusted using <b>VU gain</b>). In reference mode, value 1000 means filtered to reference signal radio equaling 10:1.</li>
+ <li><b>Attack time</b> and <b>Release time</b> - Number of signal samples, during signal VU must be above attack or below release value to change discrete signal state. This setting can eliminate false signal changes caused by very short pulse noise or silence.</li>
+ <li><b>Correction</b> - Allow user to manually correct discrete signal. If checked, during painting spectrogram, previously drew discrete signal will be processed instead of current signal, so processing signal is delayed by time needed to draw spectrogram at the same point on screen.</li>
+</ul>
+
+<h3>Displaying VU signal instead of spectrogram</h3>
+<p>In section <b>Spectrogram display</b> there is a drop-down list with three draw modes, but the lists consists of six item. Three first items (starting with &quot;S&quot;) displays spectrogram, but other items displays volume unit graph. In both cases, either without reference or with reference signal, in this mode, on half of graph height there is VU value which corresponds with maximum displayable VU value on VU display below spectrogram (if displayed).</p>
+<p>In case of processing without reference signal, there is shown on filtered signal with thresholds. The red surface presents volume above attach threshold and the green surface presents volume below release threshold.</p>
+<p>In case of processing with reference signal, the red color indicates VU above maximum, the green color indicates volume of filtered signal, and the blue color indicates the reference signal volume.</p>
+
+<h3>Discrete signal displaying and processing</h3>
+<p>Processing audio signal requires to display discrete signal below spectrogram. This bar consists of two indicators.</p>
+<p>The first represents discrete signal state triggers according to filtered signal volume or filtered to reference signal volume ratio. The red color indicates attack (change up) and green indicates release (change down). The black color indicates no changing state. This indicator are not include attack and release time.</p>
+<p>The second indicator represents discrete signal state which includes attack and release time and this signal will be processed in decoder. The black and blue elements represents lower state and the white and yellow elements represents upper state. If manual correction is enabled, you can change this signal by mouse clicking and dragging. Left mouse button turns signal to upper state, right mouse button turns signal to lower state.</p>
+
+<h3>General settings</h3>
+<p>General settings is available by clicking <b>Set</b> button in <b>Control</b> section. You can set following:</p>
+<ul>
+ <li><b>Input device</b> - Audio device used to record signal to visualize or decode.</li>
+ <li><b>Output device</b> - Audio device used to play generated signal.</li>
+ <li><b>Sample rate</b> - Sample rate of audio for recording and generating.</li>
+ <li><b>Refresh period</b> - Period in milliseconds used to process audio and refresh spectrogram.</li>
+ <li><b>Record buffer size</b> - Size in milliseconds of audio device input buffer, it must be longer than number of samples per refresh period.</li>
+ <li><b>Player buffer size</b> - Size in milliseconds of audio device output buffer, it must be longer than number of samples per refresh period.</li>
+ <li><b>Player chunk size</b> - Period in milliseconds generated at once in sound generating before putting to software buffer.</li>
+ <li><b>Stereo record</b> - Determines, which audio channel is recorded.</li>
+ <li><b>Repaint timeout</b> - Maximum time in milliseconds per refresh timer tick used to repaint spectrogram from buffer after change any spectrogram display parameter. It must be lower than refresh period and adjusted to not freeze spectrogram displaying during repaint.</li>
+ <li><b>Repaint buffer size</b> - Size in seconds of audio buffer used to repaint spectrogram and volume unit indicator after spectrogram display parameter change.</li>
+ <li><b>Rerecord buffer size</b> - Buffer length in seconds to rerecord audio. This buffer is used only, when recording audio to file is disabled. Otherwise, the audio file will be used as buffer.</li>
+ <li><b>Filters enabled</b> - Enables filtering signal (generating filtered and reference signal), but it requires higher computer performance. If disabled, the filtered and reference signal will be the same as raw signal.</li>
+ <li><b>Draw filtered and draw reference</b> - Calculates discrete Fourier transform separately to all three signals (raw, filtered and reference) and displays real signals after filtering instead of just coloring.</li>
+ <li><b>Filter size</b> - Size of IIR filter in samples used to generate filtered and reference signal. Higher value provides more accurate filtering, but requires more computer performance.</li>
+ <li><b>Player enabled</b> - Enabled playing output audio signal, which is required to generate any audio from program. From the drop-down list, you can select, which input signal will be redirected for output. If you select other than &quot;none&quot;, you have to select and configure audio devices in such way, where audio generated by output devise is not recorded by input device. Otherwise, spectrogram and displayed audio will be distorted. The value at right is the compensation difference between playback and recording sample rate. Value equaling 0 means no compensation. Positive values means, that playback is faster than recording and program will add one additional sample per entered number in playing audio. Negative value means, that playback is slower than recording and program will omit one sample per absolute of entered number in playing audio.</li>
+ <li><b>Playback buffer size</b> - Set minimum and maximum amount of milliseconds in software playing buffer to avoid under run (will cause playing errors) or overflow (will cause long delay in playing). Program follows current playing buffer filled with recorded audio. If buffer filling is below minimum, the audio chunk will be grabbed without removing of buffer. If Buffer filling is above maximum, the audio will be removed without playing (putting do player device buffer).</li>
+ <li><b>Simulate record from file</b> - Enables reading audio samples from WAV file instead of realtime recorded samples. This feature is intended for testing purpose, and selected WAV file must be 16-bit PCM, mono or stereo, sample rate should be the same as selected sample rate for recording and playing.</li>
+ <li><b>Record audio to file</b> - Enabled recording all displayed audio to WAV file in selected directory.</li>
+ <li><b>Show spectrogram parameters</b>, <b>Show audio processing parameters</b>, <b>Show buffer controllers</b>, <b>Show buffer speed slider</b>, <b>Show Morse code controllers</b> - Shows or hides sections in main window.</li>
+</ul>
+
+<h3>Spectrogram settings</h3>
+<p>Spectrogram settings are available by clicking <b>Set</b> button in <b>Spectrogram display</b> section. It has following settings:</p>
+<ul>
+ <li><b>Hide mouse cursor</b> - Enable hiding mouse cursor on spectrogram window. Usable on computers with touch-sensitive screen.</li>
+ <li><b>Spectrogram toolbar</b> - Position and size of toolbar on spectrogram window.</li>
+ <li><b>Compute decimation</b> - Adjust pixel decimation on spectrum computing for minimum display step, on higher display steps, decimation value will be proportionally lower, so calculating frequency will by approximately constant or lower for higher steps, where calculated decimation will be 1. If you check <b>Constant</b> checkbox, the decimation value will be the same for any display settings. Value &quot;1&quot; means no decimation. Use this setting if computer performance is not enough.</li>
+ <li><b>Window type</b> - Selects audio window used to calculate audio spectrum.</li>
+ <li><b>Display palette</b> - Select one of user defined color palettes to display spectrogram and VU.</li>
+ <li><b>Display gamma x1000</b> - Adjust display gamma to get color brightness proportional to signal value.</li>
+ <li><b>Display Red</b>, <b>Display Green</b>, <b>Display Blue</b> - Sets, which audio signal will be displayed for each color channel.</li>
+ <li><b>Display negative</b> - Inverts color of spectrogram.</li>
+ <li><b>Overdrive threshold</b> - Number of minimum absolute sample value to indicate input signal overdrive. This will be indicated by draw one selected color instead of spectrogram.</li>
+ <li><b>Spectrogram strip</b> - Size and color of spectrogram strip which points the current audio signal. Not affects in case of scrolling display.</li>
+ <li><b>Spectrogram half marker</b> - Size and color of spectrogram half mark displayed in case of half offset mode.</li>
+ <li><b>Spectrogram scroll cycle</b> - Number of pixels (iterations) to draw between scrolling in scrolling mode. The lover values makes display more smooth, but may require more computer performance.</li>
+ <li><b>Draw markers</b> - Draw frequency markers defined in field below. Every marker is defined by five numbers. The first is the audio frequency, the second is the thickness in pixels and three next numbers defines marker color. The number have to be separated by any non-digital character, further number than the first five will be ignored. Every marker must be defined in separate line.</li>
+</ul>
+
+<h3>Morse code decoding</h3>
+<p>Morse code decoding from CW keyed signal is based on analysis discrete pulse signal generated and eventually manually corrected. Program analyzes length of every pulse (high state period) and silence between pulses (low state period). The threshold between short pulse and ling signal is connected with signal speed.</p>
+<p>If decoder is enabled, all pulse and break timer is buffered, so you can decode the same signal many times. To enable decoder, you have to check <b>Work</b> in <b>Morse code</b> section. You can display output (decoded) text by clicking <b>Outp</b> button. You can do following actions using controls in <b>Morse code</b> section. All characters not contained in dictionary will be displayed as &quot;.&quot; and &quot;-&quot; sequence between &quot;{&quot; and &quot;}&quot;.</p>
+<ul>
+ <li><b>Set</b> - Display settings.</li>
+ <li><b>Calc</b> - Calculate speed based on last signals.</li>
+ <li><b>Clear</b> - Clear buffer.</li>
+ <li><b>Whole</b> - Decode all buffered signals using current calculated parameters.</li>
+ <li><b>Last</b> - Decode last couple of signals. This number of signal is set in setup window.</li>
+ <li><b>Current</b> - Decode signals not decoded already.</li>
+ <li><b>Real</b> - Displays decoded text automatically in real time.</li>
+</ul>
+
+<h3>Generating Morse code signal</h3>
+<p>You can generate Morse code audio signal using input text window available after clicking <b>Inp</b> button in <b>Morse code</b> section. In this window, you can set the speed in characters per minute. If you set positive value, the value will be constant. If you set zero or negative value, this value will be replaced by calculated decoding speed at text sending moment.</p>
+<p>You can send text in three ways:</p>
+<ul>
+ <li><b>&quot;Send&quot; button</b> - text will be transmitted only after clicking <b>Send</b> button.</li>
+ <li><b>&quot;Enter&quot; key</b> - text will be transmitted every time after pressing <b>Enter</b> key on keyboard.</li>
+ <li><b>Every key</b> - Every char will be transmitted directly after pressing.</li>
+</ul>
+
+<h3>Morse code encoding and decoding settings</h3>
+<p>If you click Set button in Morse code section, you will get access to Morse code encoding/decoding settings:</p>
+<ul>
+ <li><b>Last signals to calc</b> - Last pulses used to detect signal speed.</li>
+ <li><b>Short/long threshold</b> - Factor between shortest and longest signal used to differ short and long signal.</li>
+ <li><b>Short pause threshold</b> - Minimum pause length in short signal lengths x100  to tread pause as between letters.</li>
+ <li><b>Long pause threshold</b> - Minimum pause length in short signal lengths x100  to tread pause as between words.</li>
+ <li><b>Calculate button</b> - Calculate speed now.</li>
+ <li><b>Auto calculate</b> - Automatic speed calculation after every entered number of pulses.</li>
+ <li><b>Last signal from buffer</b> - Number of signals, which will be analyzed in using <b>Last</b> button in <b>Morse Code</b> section.</li>
+ <li><b>Test mode</b> - Generate continuous tone to test generator.</li>
+ <li><b>Speed standard</b> - Standard of speed used in calculating and displaying speed in chars per minute.</li>
+ <li><b>Generator volume</b> - Volume of generated tone.</li>
+ <li><b>Sound frequency</b> - When checked, sets generator tone frequency. When unchecked, tone generator frequency equals to middle frequency of filtered signal bounds.</li>
+ <li><b>Mute transmit delay</b> - Mute recording sound during transmitting and after transmitting last signal. This time is in millisecond. This sound will be displayed on spectrogram and VU meter will not be displayed. While this period, sound will be treated as silence to avoid affect in receiving sound processing. If this field is not checked, recorded sound will be not muted during transmitting.</li>
+ <li><b>Transmit display latency</b> - Time in milliseconds between sending text and displaying this text in <b>Output text</b> window. This time should be adjusted experimentally to include received text latency.</li>
+ <li><b>Signal fade value</b> - Value change speed per 1 second to eliminate clicks. Too high values may cause clicks, but too low values may cause signal smoothing in time.</li>
+</ul>
+
+<h3>Audio rerecording</h3>
+<p>Program can buffer recorded sound to display or process more than one time or display slower than real time. In this case, audio can be treated as recorded again, recorded faster or slower. To do this, you can use controls in <b>Rerecord control</b> section and <b>Rerecord speed</b> section.</p>
+<p>Using buttons in <b>Rerecord control</b> section, you can following actions:</p>
+<ul>
+ <li><b>|&lt;</b> - Jump to begin of buffer (oldest buffered signal).</li>
+ <li><b>&gt;|</b> - Jump to end of buffer (current signal).</li>
+ <li><b>&lt;&lt;&lt;</b> - Move backward 3 minutes.</li>
+ <li><b>&gt;&gt;&gt;</b> - Move forward 3 minutes.</li>
+ <li><b>&lt;&lt;</b> - Move backward 15 seconds.</li>
+ <li><b>&gt;&gt;</b> - Move forward 15 seconds.</li>
+ <li><b>|&gt;</b> - Set processing speed to 100% - real time current or delayed playing.</li>
+ <li><b>||</b> - Set processing speed to 0% - processing paused, but audio is recorded into buffer.</li>
+</ul>
+<p>In section <b>Rerecord speed</b> you can see delay time and current processing speed. You can use the slide control to change processing speed. This change affects in spectrogram drawing speed, but this sound is treated as recorded again. If you set speed above 100%, and sound buffer end is reached, sound will be drawn and processed at 100% speed.</p>
+
+<h3>Spectrogram in separate window or fullscreen</h3>
+<p>MorseCode offers displaying spectrogram in separate window or fullscreen with buttons to change parameters. This feature is intended to use with touch panel or keyboard.</p>
+<p>You can activate separate window by clicking <b>Spec</b> in <b>Control</b> section. Spectrogram or volume unit is displayed in the same way as in main window, but spectrogram is not displayed in main window while separate window is shown.</p>
+<p>In this window, you can use buttons using mouse or keyboard keys.</p>
+<p>Buttons changing values are twice, has <b>+</b> and <b>-</b> and can be controlled by <b>[Q][A]</b>, <b>[W][S]</b>, <b>[E][D]</b> etc. key pairs:</p>
+<ul>
+ <li><b>G</b> - <b>[Q][A]</b> - Gain.</li>
+ <li><b>R</b> - <b>[W][S]</b> - Resolution.</li>
+ <li><b>W</b> - <b>[E][D]</b> - Window.</li>
+ <li><b>Z</b> - <b>[R][F]</b> - Zoom.</li>
+ <li><b>O</b> - <b>[T][G]</b> - Offset.</li>
+ <li><b>S</b> - <b>[Y][H]</b> - Step.</li>
+ <li><b>B</b> - <b>[U][J]</b> - Base.</li>
+ <li><b>M</b> - <b>[I][K]</b> - Min/Max.</li>
+ <li><b>L</b> - <b>[O][L]</b> - Lines.</li>
+</ul>
+<p>The other three buttons can be controlled by <b>[Z]</b>, <b>[X]</b>, <b>[C]</b> keys:</p>
+<ul>
+ <li><b>D</b> - <b>[Z]</b> - Toggle display modes around 6-item cycle.</li>
+ <li><b>P</b> - <b>[X]</b> - Pause and resume displaying (requires rerecord buffer).</li>
+ <li><b>F</b> - <b>[C]</b> - Toggle fullscreen.</li>
+</ul>
+<p>The last button is <b>X</b>, which closes spectrogram window. This button can not be activated by keyboard to avoid accidental window closing.</p>
