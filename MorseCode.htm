@@ -13,7 +13,7 @@
   <h3>Control sections in main interface</h3>
   <p>The main interface has following control sections:</p>
   <ul>
-   <li><b>Control</b> - Contains controls to start and stop working, open general settings and display visualization in separate window. This is only section, which cannot be hidden.</li>
+   <li><b>Control</b> - Contains controls to start and stop working, open general settings, display visualization in separate window and display program information. This is only section, which cannot be hidden.</li>
    <li><b>Rerecord control</b> - Allows to rewind and re-record previous sound using audio buffer.  Works only, if record audio to file is enabled, buffer size is not limited.</li>
    <li><b>Rerecord speed</b> - Contains slider control to change radio of visualizations speed to real time, works only, if record audio to file is enabled, buffer size is not limited.</li>
    <li><b>Morse code</b> - Provides encoding and decoding CW signal using Morse code.</li>
@@ -198,5 +198,62 @@
    <li><b>F</b> - <b>[C]</b> - Toggle fullscreen.</li>
   </ul>
   <p>The last button is <b>X</b>, which closes spectrogram window. This button can not be activated by keyboard to avoid accidental window closing.</p>
+
+  <h3>Morse code symbol dictionary</h3>
+  <p>At the application directory, there is Symbols.txt file, which contains symbol definition. This file is loaded while MorseCode starts. On line in this file defines one symbol.</p>
+  <p>Every line has following structure:</p>
+  <ol>
+   <li>Morse code of symbol defined using &quot;.&quot; and &quot;-&quot; characters, which means DIT and DAH.</li>
+   <li>Tab character.</li>
+   <li>All symbols separated by &quot;|&quot;, which certain code can mean. While decoding, the first symbol will be displayed, while encoding, all symbols can be used. One symbol may consist of several characters.</li>
+  </ol>
+  <p>Characters &quot;|&quot;, &quot;{&quot; and &quot;}&quot; can not be defined as symbols.</p>
+
+  <h3>Display palettes</h3>
+  <p>You can define custom display palettes, which can be used to display spectrogram. To define palette, you have to place bitmap file (BMP or PNG format) which contains this palette drew vertically do application directory. One bitmap file can contain several palettes.</p>
+  <p>After placing bitmap file or modifying existing file, you have to add entry in Palette.txt. Every entry defines one palette and consists of following five values separated by &quot;|&quot;:</p>
+  <ol>
+   <li>Bitmap file name.</li>
+   <li>Number of column of pixels.</li>
+   <li>Number of row which defines lowest value.</li>
+   <li>Number of row which defines highest value.</li>
+   <li>Name displayed in spectrogram settings.</li>
+  </ol>
+
+  <h3>Compiling and deploying for Windows</h3>
+  <p>At this description, there will be used following wilcards:</p>
+  <ul>
+   <li><b>%MinGW%</b> - Directory, where MinGW is installed (for example &quot;C:\Qt\Qt5.6\5.6\mingw49_32\&quot;).</li>
+   <li><b>%Binary%</b> - Directory, where binary is placed after building (contains &quot;MorseCode.exe&quot;).</li>
+  </ul>
+  <p>To compile MorseCode for Windows, you have to do following:</p>
+  <ol>
+   <li>Install Qt Creator with Qt library and MinGW compiler.</li>
+   <li>Open MorseCode.pro in Qt Creator, click <b>Configure Project</b> in project configuration screen if appears.</li>
+   <li>Build project as release.</li>
+   <li>Run following command: <code>%MinGW%\bin\windeployqt.exe --release %Binary%</code>.</li>
+   <li>Copy following files from %MinGW%\bin\ to %Binary%: libgcc_s_dw2-1.dll, libstdc*6.dll, libwinpthread-1.dll.</li>
+   <li>Remove all *.cpp and *.o files.</li>
+   <li>Place downloaded starting configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.</li>
+  </ol>
+
+  <h3>Compiling and deploying for Linux</h3>
+  <p>At this description, there will be used following wilcards:</p>
+  <ul>
+   <li><b>%Linuxdeployqt%</b> - Directory, where Linuxdeployqt tool is placed.</li>
+   <li><b>%Binary%</b> - Directory, where binary is placed after building (contains &quot;MorseCode&quot; executable file).</li>
+  </ul>
+  <p>To compile MorseCode for Linux equipped with apt-get tool, you have to do following:</p>
+  <ol>
+   <li>Upgrade installed packet using following: <code>sudo apt-get update</code> and <code>sudo apt-get upgrade</code>.</li>
+   <li>Install Qt library and Qt Creator using: <code>build-essential qtcreator qt5-default</code>.</li>
+   <li>Install multimedia extension for Qt using: <code>sudo apt-get install libqt5multimedia5 libqt5multimedia5-plugins libqt5multimediawidgets5</code>.</li>
+   <li>Download &quot;linuxdeployqt-continuous-x86_64.AppImage&quot; from <a href="https://github.com/probonopd/linuxdeployqt/releases">https://github.com/probonopd/linuxdeployqt/releases</a> and place it into %Linuxdeployqt%.</li>
+   <li>Open MorseCode.pro in Qt Creator, click <b>Configure Project</b> in project configuration screen if appears.</li>
+   <li>Build project as release.</li>
+   <li>Run following command to build stanlone application: <code>'%Linuxdeployqt%\linuxdeployqt-continuous-x86_64.AppImage' '%Binary%\MorseCode' -appimage</code>.</li>
+   <li>Remove all *.h, *.cpp, *.o, .DirIcon, AppRun, default.desktop, default.png and Makefile files.</li>
+   <li>Place downloaded starting configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.</li>
+  </ol>
  </body>
 </html>

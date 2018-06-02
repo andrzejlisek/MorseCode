@@ -154,6 +154,11 @@ void MainWindow::on_SoundStart_clicked()
 
     if (Core.BufOpen(SampleRate))
     {
+        if (ProgTimer__ != NULL)
+        {
+            //delete ProgTimer_;
+            delete ProgTimer__;
+        }
         //!!! ProgTimer_ = NEW(ProgTimer, ProgTimer(Settings_->RefreshPeriod, AR, AP));
         //!!! ProgTimer__ = NEW(QThread, QThread(this));
         ProgTimer_ = new ProgTimer(Settings_->RefreshPeriod, AR, AP);
@@ -880,3 +885,11 @@ void MainWindow::on_SpectrogramMinMaxT_valueChanged(int value)
     SetLabels();
 }
 
+
+void MainWindow::on_SoundAbout_clicked()
+{
+    About_.show();
+    About_.activateWindow();
+    About_.raise();
+    About_.setFocus();
+}

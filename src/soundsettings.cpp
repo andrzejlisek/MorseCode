@@ -170,6 +170,7 @@ void SoundSettings::on_SoundBufferRT_textEdited(const QString &arg1)
     if (EventEnabled)
     {
         Settings_->AudioBufferR_MS = Eden::ToInt(arg1);
+        Settings_->CalcSampleRate();
     }
 }
 
@@ -178,6 +179,7 @@ void SoundSettings::on_SoundBufferPT_textEdited(const QString &arg1)
     if (EventEnabled)
     {
         Settings_->AudioBufferP_MS = Eden::ToInt(arg1);
+        Settings_->CalcSampleRate();
     }
 }
 
@@ -186,6 +188,7 @@ void SoundSettings::on_SoundChunkT_textEdited(const QString &arg1)
     if (EventEnabled)
     {
         Settings_->PlayerInputChunkSize_MS = Eden::ToInt(arg1);
+        Settings_->CalcSampleRate();
     }
 }
 
@@ -320,6 +323,7 @@ void SoundSettings::on_PlaybackBufferMinT_textEdited(const QString &arg1)
         if (Eden::ToInt(arg1) > 0)
         {
             Settings_->PlaybackBufSizeMin_MS = Eden::ToInt(arg1);
+            Settings_->CalcSampleRate();
         }
     }
 }
@@ -331,6 +335,7 @@ void SoundSettings::on_PlaybackBufferMaxT_textEdited(const QString &arg1)
         if (Eden::ToInt(arg1) > 0)
         {
             Settings_->PlaybackBufSizeMax_MS = Eden::ToInt(arg1);
+            Settings_->CalcSampleRate();
         }
     }
 }
@@ -434,6 +439,7 @@ void SoundSettings::on_RepaintBufferSizeT_textEdited(const QString &arg1)
     if (EventEnabled)
     {
         Settings_->RepaintBufferSize_S = Eden::ToInt(arg1);
+        Settings_->CalcSampleRate();
         GuiChange();
     }
 }
@@ -443,6 +449,7 @@ void SoundSettings::on_ReplayBufferSizeT_textEdited(const QString &arg1)
     if (EventEnabled)
     {
         Settings_->ReplayBufferSize_S = Eden::ToInt(arg1);
+        Settings_->CalcSampleRate();
         GuiChange();
     }
 }

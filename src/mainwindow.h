@@ -17,6 +17,7 @@
 #include "spectrumfull.h"
 #include "spectrumsettings.h"
 #include <QSlider>
+#include "about.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,8 +29,8 @@ class MainWindow : public QMainWindow
 
 public:
     Settings * Settings_;
-    QThread * ProgTimer__;
-    ProgTimer * ProgTimer_;
+    QThread * ProgTimer__ = NULL;
+    ProgTimer * ProgTimer_ = NULL;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void DrawSpectrogram();
@@ -43,6 +44,7 @@ public:
     SpectrumFull SpecF;
     SpectrumSettings SpecS;
     MorseDecoderSettings MDS;
+    About About_;
     void closeEvent(QCloseEvent *event);
     short * AudioTempP;
     int PlayerInputChunkSize = 5000;
@@ -213,6 +215,8 @@ private slots:
     void on_DecodeCorrectionC_toggled(bool checked);
 
     void on_SpectrogramMinMaxT_valueChanged(int value);
+
+    void on_SoundAbout_clicked();
 
 private:
     Ui::MainWindow *ui;

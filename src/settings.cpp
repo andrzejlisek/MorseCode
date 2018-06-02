@@ -304,7 +304,14 @@ void Settings::CalcSampleRate()
 
     MuteTransmitC = (MuteTransmitC_MS * SampleRate) / 1000;
 
-    TransmitSignalFade = (TransmitSignalFade_MS * 1000) / SampleRate;
+    if (SampleRate > 0)
+    {
+        TransmitSignalFade = (TransmitSignalFade_MS * 1000) / SampleRate;
+    }
+    else
+    {
+        TransmitSignalFade = 2000000;
+    }
 
     RepaintBufferSize = (RepaintBufferSize_S * SampleRate);
 

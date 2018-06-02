@@ -36,7 +36,8 @@ SOURCES += qmouselabel.cpp \
     audioplayerthread.cpp \
     audiorecorderthread.cpp \
     eden.cpp \
-    spectrumfull.cpp
+    spectrumfull.cpp \
+    about.cpp
 
 HEADERS  += qmouselabel.h \
     objmem.h \
@@ -62,7 +63,8 @@ HEADERS  += qmouselabel.h \
     audioplayerthread.h \
     audiorecorderthread.h \
     eden.h \
-    spectrumfull.h
+    spectrumfull.h \
+    about.h
 
 FORMS    += mainwindow.ui \
     soundsettings.ui \
@@ -70,6 +72,7 @@ FORMS    += mainwindow.ui \
     morsedecodersettings.ui \
     inputtext.ui \
     spectrumsettings.ui \
-    spectrumfull.ui
+    spectrumfull.ui \
+    about.ui
 
 CONFIG += c++11

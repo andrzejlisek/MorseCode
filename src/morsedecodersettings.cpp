@@ -106,6 +106,7 @@ void MorseDecoderSettings::on_MuteTransmitC_toggled(bool checked)
 void MorseDecoderSettings::on_MuteTransmitT_textEdited(const QString &arg1)
 {
     Settings_->MuteTransmitC_MS = Eden::ToInt(arg1);
+    Settings_->CalcSampleRate();
 }
 
 void MorseDecoderSettings::on_TransmitBufLatencyT_textEdited(const QString &arg1)
@@ -116,6 +117,7 @@ void MorseDecoderSettings::on_TransmitBufLatencyT_textEdited(const QString &arg1
 void MorseDecoderSettings::on_TransmitFadeT_textEdited(const QString &arg1)
 {
     Settings_->TransmitSignalFade_MS = Eden::ToInt(arg1);
+    Settings_->CalcSampleRate();
 }
 
 void MorseDecoderSettings::on_SoundFreqC_toggled(bool checked)

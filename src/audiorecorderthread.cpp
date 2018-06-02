@@ -149,6 +149,7 @@ namespace EdenClass
     void AudioRecorderThread::RecordStart()
     {
         mIOInput = mAudioInput->start();
+        mIOInput->readAll();
         Working = true;
     }
 
@@ -159,7 +160,6 @@ namespace EdenClass
     {
         Working = false;
         mAudioInput->stop();
-        mIOInput->readAll();
         mIOInput = 0;
         RemoveHeapObjects(false);
     }
