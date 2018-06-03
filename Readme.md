@@ -199,7 +199,7 @@ To compile MorseCode for Windows, you have to do following:
 4. Run following command: `%MinGW%\\bin\\windeployqt.exe --release %Binary%`.
 5. Copy following files from %MinGW%\\bin\\ to %Binary%: libgcc_s_dw2-1.dll, libstdc*6.dll, libwinpthread-1.dll.
 6. Remove all *.cpp and *.o files.
-7. Place downloaded starting configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.
+7. Place downloaded initial configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.
 
 ## Compiling and deploying for Linux
 At this description, there will be used following wilcards:
@@ -215,4 +215,4 @@ To compile MorseCode for Linux equipped with apt-get tool, you have to do follow
 6. Build project as release.
 7. Run following command to build stanlone application: `'%Linuxdeployqt%\\linuxdeployqt-continuous-x86_64.AppImage' '%Binary%\\MorseCode' -appimage`.
 8. Remove all *.h, *.cpp, *.o, .DirIcon, AppRun, default.desktop, default.png and Makefile files.
-9. Place downloaded starting configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.
+9. Place downloaded initial configuration files: Symbols.txt, Palette.txt, Thermal.png, RGB.png.
