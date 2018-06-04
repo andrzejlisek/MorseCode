@@ -1,8 +1,8 @@
-#define DEBUG0
+#define OBJMEMDEBUG0
 
 #define OBJMEMSTR std::cout
 #define OBJMEMSIZETYPE size_t
-#ifdef DEBUG
+#ifdef OBJMEMDEBUG
  #define NEW(T, C)              ([](T * __ptr) -> T*   { OBJMEMSTR << "NEW_OBJ_" << (void*)__ptr << "_" << #T << std::endl;   return __ptr; })(new C)
  #define NEWARR(T, C)           ([](T * __ptr) -> T*   { OBJMEMSTR << "NEW_ARR_" << (void*)__ptr << "_" << #T << std::endl;   return __ptr; })(new C)
  #define NEWARRINIT(T, C, N, V) ([](T * __ptr, OBJMEMSIZETYPE __N, T __V) -> T*   { OBJMEMSTR << "NEW_ARR_" << (void*)__ptr << "_" << #T << std::endl; for (OBJMEMSIZETYPE __it = 0; __it < __N; __it++) { __ptr[__it] = __V; } return __ptr; })(new C, N, V)
