@@ -1,8 +1,0 @@
-Thermal.bmp|8|433|1|Thermal: Greyscale
-Thermal.bmp|26|433|1|Thermal: Iron
-Thermal.bmp|44|433|1|Thermal: Rain
-Thermal.bmp|62|433|1|Thermal: Glowbow
-Thermal.bmp|80|433|1|Thermal: Yellow
-RGB.bmp|1|765|0|Colors: Red
-RGB.bmp|7|765|0|Colors: Green
-RGB.bmp|16|765|0|Colors: Blue
